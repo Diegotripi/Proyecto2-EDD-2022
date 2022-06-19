@@ -8,6 +8,7 @@ package UI;
 import Classes.Article;
 import DataStructures.HashTable;
 import javax.swing.JOptionPane;
+import DataStructures.LinkedList;
 
 /**
  *
@@ -19,7 +20,8 @@ public class GlobalUI {
     private static final SearchArticlePage searchArticlePage = new SearchArticlePage();
     private static final AnalyzeArticlePage analyzeArticlePage = new AnalyzeArticlePage();
 
-    private static final HashTable articleHT = new HashTable();
+    private static final  HashTable articleHT = new HashTable();
+    private static final LinkedList articleList = new LinkedList();
 
     /**
      * Opens proyect MainPage
@@ -96,6 +98,29 @@ public class GlobalUI {
             JOptionPane.showMessageDialog(null, "El artículo: '" + article.getTitle() + "' ya existe en la base de datos", "Advertencia", 0);
         }
 
+    }
+    
+        /**
+     * Getter for LinkedList
+     *
+     * @return articleList
+     */
+    public static LinkedList getArticleList() {
+        return articleList;
+    }
+    
+    /**
+     * Adds given article title to a list, validates and informs if the article was
+     * already in the list 
+     *
+     * @param article
+     */
+    public static void addArticleToList(Article article) {
+        System.out.println("1");
+        if (!getArticleHT().isArticleIn(article)) {
+            System.out.println("2");
+            getArticleList().addEnd(article.getTitle());
+        } 
     }
 
 }

@@ -9,6 +9,7 @@ import Classes.Article;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import main.FunctionsTXT;
+import DataStructures.Node;
 
 /**
  *
@@ -47,6 +48,21 @@ public class FunctionsUI {
                 String info = articleFound.getArticlePrintableStr();
                 JOptionPane.showMessageDialog(null, info, "Artículo encontrado", 1);
             }
+        }
+    }
+    
+    public static void addArticles(){
+        try {
+            Node pointer = GlobalUI.getArticleList().getHead();
+        int index = 0;
+        while (pointer != null){
+            String articleTitle = (String) pointer.getElement();
+            GlobalUI.getAnalyzeArticlePage().jComboBox1.insertItemAt(articleTitle, index);
+            index++;
+            pointer = pointer.getNext();
+        }
+        } catch (Exception e){
+            System.out.println(e);
         }
     }
 

@@ -45,6 +45,7 @@ public class FunctionsTXT {
 
                 if (isTxtFormatValid(txt)) {
                     GlobalUI.addArticleToHT(convertStrToArticle(txt));
+                    GlobalUI.addArticleToList(convertStrToArticle(txt));
                 } else {
                     JOptionPane.showMessageDialog(null, "El archivo seleccionado no tiene el formato correcto, por favor intentar de nuevo", "Advertencia", 2);
                 }
@@ -159,6 +160,8 @@ public class FunctionsTXT {
         while (pointer != null) {
             // THe DB already validates that every article is unique
             GlobalUI.getArticleHT().addArticle((convertStrToArticle((String) (pointer.getElement()))));
+            GlobalUI.getArticleList().addEnd(convertStrToArticle((String) (pointer.getElement())).getTitle());
+            System.out.println("1");
             pointer = pointer.getNext();
         }
     }

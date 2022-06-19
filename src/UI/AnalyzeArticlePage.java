@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package UI;
+import DataStructures.Node;
 
 /**
  *
@@ -18,6 +19,7 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        FunctionsUI.addArticles();
     }
 
     /**
@@ -33,6 +35,9 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         title = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         backToMenuButton = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,7 +47,6 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("Analizar Resumen");
         jPanel2.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
@@ -59,6 +63,19 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         });
         getContentPane().add(backToMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, -1));
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 500, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 400, 160));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/output-onlinepngtools.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-670, -40, 1400, 580));
 
@@ -68,6 +85,10 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
     private void backToMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuButtonActionPerformed
         GlobalUI.openMainPage();
     }//GEN-LAST:event_backToMenuButtonActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,7 +128,10 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backToMenuButton;
     private javax.swing.JLabel background;
+    public javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

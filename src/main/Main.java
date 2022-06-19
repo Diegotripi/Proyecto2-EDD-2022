@@ -8,6 +8,7 @@ package main;
 import Classes.Article;
 import DataStructures.LinkedList;
 import UI.GlobalUI;
+import DataStructures.Node;
 
 /**
  *
@@ -21,9 +22,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GlobalUI.openMainPage();
         FunctionsTXT.loadExistingArticlesInDB();
-//        testHash();
+        GlobalUI.openMainPage();
+        Node pointer = GlobalUI.getArticleList().getHead();
+        while (pointer != null) {
+            System.out.println(pointer.getElement());
+            pointer = pointer.getNext();
+        }
     }
 
     public static void testHash() {
