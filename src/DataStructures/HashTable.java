@@ -6,6 +6,7 @@
 package DataStructures;
 
 import Classes.Article;
+import Classes.HashObject;
 
 /**
  *
@@ -79,11 +80,16 @@ public class HashTable {
      * @param articleToAdd
      * @return boolean
      */
+    // addArticle is its own method and is not included in HashObject because
+    // its necessary to know when the object added is an article
     public boolean addArticle(Article articleToAdd) {
         // the str given for hashing is the title in lowerCase 
         // this makes the search made by the user easier
         int index = hashString(articleToAdd.getTitle().toLowerCase());
         boolean isTitleInList = getTable()[index].isTitleInList(articleToAdd.getTitle());
+        // addTitleInList(articleToAdd)
+        // addAuthorInAuxHT(articleToAdd)
+        // addKeyWordInAuxHT(articleToAdd)
 
         if (isTitleInList) {
             return false;
@@ -95,24 +101,41 @@ public class HashTable {
     }
 
     /**
+     * Given and HashObject, add Them in the HT, or modify it if already exists
+     *
+     * @param hashObject
+     */
+    public void addHashObject(HashObject hashObject) {
+        // the str given for hashing is the object key in lowerCase 
+        // this makes the search made by the user easier
+        int index = hashString(hashObject.getKey().toLowerCase());
+
+        // código para buscar si el objeto ya está en el HT una vez encontrado el índice
+//        boolean isObjectInList = getTable()[index].isHashObjectInList(hashObject.getKey());
+
+//Código para añadir el objeto
+        getTable()[index].addEnd(hashObject);
+    }
+
+    /**
      * Search article in HT by title return null if not found
      *
      * @param title
      * @return Article
      */
     public Article searchArticleByTitle(String title) {
-        Article article= null;
+        Article article = null;
         //all hashing must be in loweCase
         int index = hashString(title.toLowerCase());
         LinkedList articlesInIndex = getTable()[index];
         Node pointer = articlesInIndex.getHead();
         while (pointer != null) {
-            if ((title.toLowerCase()).equals( ((Article) pointer.getElement()).getTitle().toLowerCase() )) {
-                article = ((Article)pointer.getElement());
+            if ((title.toLowerCase()).equals(((Article) pointer.getElement()).getTitle().toLowerCase())) {
+                article = ((Article) pointer.getElement());
             }
             pointer = pointer.getNext();
         }
-        
+
         return article;
     }
 

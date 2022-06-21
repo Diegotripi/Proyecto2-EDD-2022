@@ -6,6 +6,7 @@
 package DataStructures;
 
 import Classes.Article;
+import Classes.HashObject;
 
 /**
  *
@@ -298,6 +299,23 @@ public class LinkedList {
         Node pointer = getHead();
         while (pointer != null) {
             if (((Article) pointer.getElement()).getTitle().equals(title)) {
+                return true;
+            }
+            pointer = pointer.getNext();
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the given hashObject is currently inside the list
+     *
+     * @param key
+     * @return boolean
+     */
+    public boolean isHashObjectInList(String key) {
+        Node pointer = getHead();
+        while (pointer != null) {
+            if (((HashObject) pointer.getElement()).getKey().equals(key)) {
                 return true;
             }
             pointer = pointer.getNext();
