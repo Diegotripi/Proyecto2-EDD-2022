@@ -22,6 +22,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        GlobalUI.start();
         FunctionsTXT.loadExistingArticlesInDB();
         GlobalUI.openMainPage();
         Node pointer = GlobalUI.getArticleList().getHead();

@@ -21,7 +21,11 @@ public class GlobalUI {
     private static final AnalyzeArticlePage analyzeArticlePage = new AnalyzeArticlePage();
 
     private static final  HashTable articleHT = new HashTable();
-    private static final LinkedList articleList = new LinkedList();
+    private static LinkedList articleList = new LinkedList();
+    
+    public static void start() {
+        System.out.println("ndndwnwdn");
+    }
 
     /**
      * Opens proyect MainPage

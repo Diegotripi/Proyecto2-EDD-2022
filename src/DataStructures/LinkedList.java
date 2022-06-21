@@ -20,7 +20,7 @@ public class LinkedList {
      * LinkedList constructor
      */
     public LinkedList() {
-        this.head = null;
+        this.head = new Node(5);
         this.length = 0;
     }
 

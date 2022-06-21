@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package UI;
+import DataStructures.HashTable;
 import DataStructures.Node;
 
 /**
@@ -11,16 +12,21 @@ import DataStructures.Node;
  * @author isaac
  */
 public class AnalyzeArticlePage extends javax.swing.JFrame {
-
-    /**
-     * Creates new form AnalyzeArticlePage
-     */
+    
+    HashTable ht ;
     public AnalyzeArticlePage() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        FunctionsUI.addArticles();
+        
     }
+    
+//    public void getHash(HashTable HT){
+//        ht = HT;
+//        FunctionsUI.fillComboBoxArticles(ht);
+//        
+//    }
+//    
 
     /**
      * This method is called from within the constructor to initialize the form.

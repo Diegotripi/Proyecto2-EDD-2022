@@ -6,6 +6,8 @@
 package UI;
 
 import Classes.Article;
+import DataStructures.HashTable;
+import DataStructures.LinkedList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import main.FunctionsTXT;
@@ -51,19 +53,33 @@ public class FunctionsUI {
         }
     }
     
-    public static void addArticles(){
-        try {
-            Node pointer = GlobalUI.getArticleList().getHead();
-        int index = 0;
-        while (pointer != null){
-            String articleTitle = (String) pointer.getElement();
-            GlobalUI.getAnalyzeArticlePage().jComboBox1.insertItemAt(articleTitle, index);
-            index++;
-            pointer = pointer.getNext();
-        }
-        } catch (Exception e){
-            System.out.println(e);
-        }
-    }
+//    public static void fillComboBoxArticles(HashTable HT){
+////        Node pointer = GlobalUI.getArticleList().getHead();
+////        int index = 0;
+////        while (pointer != null){
+////            String articleTitle = (String) pointer.getElement();
+////            GlobalUI.getAnalyzeArticlePage().jComboBox1.insertItemAt(articleTitle, index);
+////            index++;
+////            pointer = pointer.getNext();
+////        }
+//        int index = 0;
+//        for (int i = 0; i < HT.getSize(); i++) {
+//            if (!HT.getTable()[i].isEmpty()) {
+//                if (HT.getTable()[i].getLength() == 1) {
+//                    String articleTitle = ((Article) HT.getTable()[i].getHead().getElement()).getTitle();
+//                    GlobalUI.getAnalyzeArticlePage().jComboBox1.insertItemAt(articleTitle, index);
+//                    index++;
+//                } else {
+//                    Node pointer = HT.getTable()[i].getHead();
+//                    while (pointer != null) {
+//                        String articleTitle = ((Article) HT.getTable()[i].getHead().getElement()).getTitle();
+//                        GlobalUI.getAnalyzeArticlePage().jComboBox1.insertItemAt(articleTitle, index);
+//                        index++;
+//                        pointer = pointer.getNext();
+//                    }
+//            }
+//        }
+//        }
+//    }
 
 }
