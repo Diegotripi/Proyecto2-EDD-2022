@@ -23,6 +23,7 @@ public class Main {
     public static void main(String[] args) {
         GlobalUI.openMainPage();
         FunctionsTXT.loadExistingArticlesInDB();
+        System.out.println("holis");
 //        testHash();
     }
 
