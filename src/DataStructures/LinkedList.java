@@ -412,13 +412,13 @@ public class LinkedList {
         return found;
     }
     
-    //FALTA JAVADOC
+    //FALTA JAVADOC Y PONER QUE AL FINAL SE PONGA UN PUNTO EN VEZ DE UNA COMA
     public String getAuthorsString() {
         String result = "";
         
         Node pointer = getHead();
         while (pointer != null) {
-            result += (String) pointer.getElement() + " ";
+            result += (String) pointer.getElement() + ",";
             pointer = pointer.getNext();
         }
         
