@@ -8,6 +8,7 @@ package DataStructures;
 import Classes.Article;
 import Classes.Author;
 import Classes.HashObject;
+import Classes.KeyWord;
 import UI.GlobalUI;
 
 /**
@@ -109,9 +110,11 @@ public class HashTable {
     public void addTitleInList(Article articleToAdd) {
         GlobalUI.getListTitles().addEnd(articleToAdd.getTitle());
     }
+
     /**
      * Create a new LinkedList with the Authors
-     * @param articleToAdd 
+     *
+     * @param articleToAdd
      */
 
     public void addAuthorInList(Article articleToAdd) {
@@ -119,8 +122,7 @@ public class HashTable {
         LinkedList list = GlobalUI.getListAuthor();
         String authors = articleToAdd.getAuthors().getAuthorsString();
         String[] name = authors.split(",");
-        
-        
+
         for (int i = 0; i < name.length; i++) {
             boolean aux = true;
             Node temp = list.getHead();
@@ -129,32 +131,33 @@ public class HashTable {
                 if (temp.getElement().toString().equalsIgnoreCase(name[i])) {
                     aux = false;
                 }
-                
+
                 temp = temp.getNext();
             }
-            
+
             if (aux) {
-                list.addEnd(name[i]);  
+                list.addEnd(name[i]);
             }
-            
+
             addAuthorInAuxHT(articleToAdd, name[i]);
-            
+
         }
-        
+
         GlobalUI.setListAuthor(list);
 
     }
+
     /**
      * Create a new LinkedList with the keywords
-     * @param articleToAdd 
+     *
+     * @param articleToAdd
      */
     public void addWordsInList(Article articleToAdd) {
 
         LinkedList list = GlobalUI.getListWords();
         String words = articleToAdd.getKeyWords().getAuthorsString();
         String[] name = words.split(",");
-        
-        
+
         for (int i = 0; i < name.length; i++) {
             boolean aux = true;
             Node temp = list.getHead();
@@ -163,24 +166,21 @@ public class HashTable {
                 if (temp.getElement().toString().equalsIgnoreCase(name[i])) {
                     aux = false;
                 }
-                
+
                 temp = temp.getNext();
             }
-            
+
             if (aux) {
                 list.addEnd(name[i]);
             }
-            
+
             addKeywordsInAuxHT(articleToAdd, name[i]);
-            
-            
+
         }
-        
+
         GlobalUI.setListWords(list);
 
     }
-    
-    
 
     /**
      * Given and HashObject, add Them in the HT, or modify it if already exists
@@ -247,29 +247,31 @@ public class HashTable {
             getTable()[index].addEnd(object);
         }
     }
-    
 
     /**
-     * add article with authors hash 
+     * add article with authors hash
+     *
      * @param articleToAdd
-     * @param name 
+     * @param name
      */
-    public void addAuthorInAuxHT(Article articleToAdd, String name){
-        int index = GlobalUI.getAuthorHT().hashString(name.toLowerCase());
-        GlobalUI.getAuthorHT().getTable()[index].addEnd(articleToAdd);
+    public void addAuthorInAuxHT(Article articleToAdd, String name) {
+        Author author = new Author();
+        author.setName(name);
+        author.setTitle(articleToAdd.getTitle());
+        GlobalUI.getAuthorHT().addHashObject(author);
     }
-    
-    
+
     /**
      * add article with keywords hash
+     *
      * @param articleToAdd
-     * @param name 
+     * @param name
      */
-    public void addKeywordsInAuxHT(Article articleToAdd, String name){
-        int index = GlobalUI.getAuthorHT().hashString(name.toLowerCase());
-        GlobalUI.getKeywordsHT().getTable()[index].addEnd(articleToAdd);
+    public void addKeywordsInAuxHT(Article articleToAdd, String name) {
+        KeyWord keyword = new KeyWord();
+        keyword.setName(name);
+        keyword.setTitle(articleToAdd.getTitle());
+        GlobalUI.getKeywordsHT().addHashObject(keyword);
     }
-    
-    
 
 }

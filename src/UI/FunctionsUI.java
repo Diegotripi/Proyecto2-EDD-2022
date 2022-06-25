@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import main.FunctionsTXT;
 import Classes.Author;
+import Classes.KeyWord;
+import javax.swing.JTextField;
 
 /**
  *
@@ -153,7 +155,7 @@ public class FunctionsUI {
     }
     
     /**
-     * Get author information from the SearchArticleUI and find articles
+     * Get author information from the SearchArticleUI and fill article titles information
      * @param comboBox
      * @param comboBox2 
      */
@@ -164,10 +166,12 @@ public class FunctionsUI {
             String author = comboBox2.getSelectedItem().toString();
             int index = GlobalUI.getAuthorHT().hashString(author.toLowerCase());
             LinkedList list = GlobalUI.getAuthorHT().getTable()[index];
+            //System.out.println(list.getHead().getElement());
+            
             LinkedList list2 = new LinkedList();
             Node pointer = list.getHead();
             for (int i = 0; i < list.getLength(); i++) {
-                list2.addEnd(((Article) pointer.getElement()).getTitle());
+                list2.addEnd(((Author) pointer.getElement()).getTitle());
                 pointer = pointer.getNext();
             }
             fillComboBoxWithListStrings(comboBox, list2);
@@ -176,6 +180,11 @@ public class FunctionsUI {
         }
 
     }
+    
+    /**
+     * Get article title and show information
+     * @param comboBox 
+     */
     
     
     public static void getArticleTitle(JComboBox<String> comboBox){
@@ -186,6 +195,44 @@ public class FunctionsUI {
         }else{
             JOptionPane.showMessageDialog(null, "Selecciona un articulo");
         }
+    }
+    
+    /**
+     * Get keyword information from the SearchArticleUI and fill article titles information
+     * @param comboBox
+     * @param textfield 
+     */
+    
+    public static void fillKeyWordArticleTitleComboBox(JComboBox<String> comboBox, JTextField textfield) {
+        LinkedList list2 = new LinkedList();
+        if (!textfield.getText().equals("")) {
+            String keyword = textfield.getText();
+            int index = GlobalUI.getKeywordsHT().hashString(keyword.toLowerCase());
+            LinkedList list = GlobalUI.getKeywordsHT().getTable()[index];
+            //System.out.println(list.getHead().getElement());
+            
+            Node pointer = list.getHead();
+            for (int i = 0; i < list.getLength(); i++) {
+                list2.addEnd(((KeyWord) pointer.getElement()).getTitle());
+                pointer = pointer.getNext();
+            }
+            fillComboBoxWithListStrings(comboBox, list2);
+            
+            if (list2.getLength() == 0 ) {
+                JOptionPane.showMessageDialog(null, "Palabra clave no encontrada");
+                
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Escriba una palabra clave");
+        }
+        
+        textfield.setText("");
+        
+         
+            
+        
+
     }
     
 

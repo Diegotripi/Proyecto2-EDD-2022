@@ -5,7 +5,6 @@
  */
 package Classes;
 
-import DataStructures.LinkedList;
 
 /**
  *
@@ -14,6 +13,8 @@ import DataStructures.LinkedList;
 public class Author implements HashObject {
 
     private String name;
+    private String title;
+    
 
     /**
      * Gets name in order to hash
@@ -33,6 +34,32 @@ public class Author implements HashObject {
     public String getName() {
         return name;
     }
+    /**
+     * Set the author name
+     * @param name 
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+    /**
+     * 
+     * @return 
+     */
+    public String getTitle() {
+        return title;
+    }
+    /**
+     * 
+     * @param title 
+     */
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
+    
+    
+    
     
 
     

@@ -30,13 +30,6 @@ public class SearchArticlePage extends javax.swing.JFrame {
         return AuthorComboBox;
     }
     
-    /**
-     * Return the combo box
-     * @return KeyWords Combo Box
-     */
-    public JComboBox<String> getKeyWordsComboBox() {
-        return KeyWordsComboBox;
-    }
     
     /**
      * Return the combo box
@@ -56,9 +49,12 @@ public class SearchArticlePage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel7 = new javax.swing.JPanel();
+        title10 = new javax.swing.JLabel();
         title7 = new javax.swing.JLabel();
-        KeyWordsComboBox = new javax.swing.JComboBox<>();
-        AuthorSearchButton1 = new javax.swing.JToggleButton();
+        AuthorSearchButton2 = new javax.swing.JToggleButton();
+        KeyWordSearchButton = new javax.swing.JToggleButton();
+        KeyWordArticleTitleComboBox = new javax.swing.JComboBox<>();
+        KeyWordsTextField = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         title1 = new javax.swing.JLabel();
@@ -70,6 +66,7 @@ public class SearchArticlePage extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
+        title9 = new javax.swing.JLabel();
         title6 = new javax.swing.JLabel();
         AuthorComboBox = new javax.swing.JComboBox<>();
         AuthorSearchTitleButton = new javax.swing.JToggleButton();
@@ -89,23 +86,39 @@ public class SearchArticlePage extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 204, 204));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        title10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        title10.setForeground(new java.awt.Color(0, 0, 0));
+        title10.setText("Seleccione el articulo");
+        jPanel7.add(title10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
+
         title7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         title7.setForeground(new java.awt.Color(0, 0, 0));
         title7.setText("Seleccione palabra clave");
         jPanel7.add(title7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        KeyWordsComboBox.setBackground(new java.awt.Color(255, 153, 153));
-        KeyWordsComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        KeyWordsComboBox.setMinimumSize(new java.awt.Dimension(100, 100));
-        KeyWordsComboBox.addActionListener(new java.awt.event.ActionListener() {
+        AuthorSearchButton2.setText("Buscar");
+        AuthorSearchButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                KeyWordsComboBoxActionPerformed(evt);
+                AuthorSearchButton2ActionPerformed(evt);
             }
         });
-        jPanel7.add(KeyWordsComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 400, -1));
+        jPanel7.add(AuthorSearchButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, -1, -1));
 
-        AuthorSearchButton1.setText("Buscar");
-        jPanel7.add(AuthorSearchButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
+        KeyWordSearchButton.setText("Buscar");
+        KeyWordSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KeyWordSearchButtonActionPerformed(evt);
+            }
+        });
+        jPanel7.add(KeyWordSearchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
+
+        KeyWordArticleTitleComboBox.setBackground(new java.awt.Color(255, 153, 153));
+        KeyWordArticleTitleComboBox.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel7.add(KeyWordArticleTitleComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 400, -1));
+
+        KeyWordsTextField.setBackground(new java.awt.Color(255, 153, 153));
+        KeyWordsTextField.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel7.add(KeyWordsTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 400, 30));
 
         getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 680, 90));
 
@@ -164,6 +177,11 @@ public class SearchArticlePage extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 204, 204));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        title9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        title9.setForeground(new java.awt.Color(0, 0, 0));
+        title9.setText("Selecciona el articulo");
+        jPanel6.add(title9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
 
         title6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         title6.setForeground(new java.awt.Color(0, 0, 0));
@@ -254,10 +272,6 @@ public class SearchArticlePage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AuthorComboBoxActionPerformed
 
-    private void KeyWordsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyWordsComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_KeyWordsComboBoxActionPerformed
-
     private void AuthorSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AuthorSearchButtonActionPerformed
     FunctionsUI.fillAuthorArticleTitleComboBox( AuthorArticleTitleComboBox, AuthorComboBox);
     }//GEN-LAST:event_AuthorSearchButtonActionPerformed
@@ -265,6 +279,14 @@ public class SearchArticlePage extends javax.swing.JFrame {
     private void AuthorSearchTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AuthorSearchTitleButtonActionPerformed
         FunctionsUI.getArticleTitle(AuthorArticleTitleComboBox);
     }//GEN-LAST:event_AuthorSearchTitleButtonActionPerformed
+
+    private void KeyWordSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyWordSearchButtonActionPerformed
+        FunctionsUI.fillKeyWordArticleTitleComboBox( KeyWordArticleTitleComboBox, KeyWordsTextField);
+    }//GEN-LAST:event_KeyWordSearchButtonActionPerformed
+
+    private void AuthorSearchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AuthorSearchButton2ActionPerformed
+        FunctionsUI.getArticleTitle(KeyWordArticleTitleComboBox);
+    }//GEN-LAST:event_AuthorSearchButton2ActionPerformed
     /**
      * Getter for titleSearchTextField
      * @return JTextArea
@@ -313,9 +335,11 @@ public class SearchArticlePage extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> AuthorArticleTitleComboBox;
     private javax.swing.JComboBox<String> AuthorComboBox;
     private javax.swing.JToggleButton AuthorSearchButton;
-    private javax.swing.JToggleButton AuthorSearchButton1;
+    private javax.swing.JToggleButton AuthorSearchButton2;
     private javax.swing.JToggleButton AuthorSearchTitleButton;
-    private javax.swing.JComboBox<String> KeyWordsComboBox;
+    private javax.swing.JComboBox<String> KeyWordArticleTitleComboBox;
+    private javax.swing.JToggleButton KeyWordSearchButton;
+    private javax.swing.JTextField KeyWordsTextField;
     private javax.swing.JButton backToMenuButton;
     private javax.swing.JLabel background;
     private javax.swing.JPanel jPanel1;
@@ -329,12 +353,14 @@ public class SearchArticlePage extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
+    private javax.swing.JLabel title10;
     private javax.swing.JLabel title3;
     private javax.swing.JLabel title4;
     private javax.swing.JLabel title5;
     private javax.swing.JLabel title6;
     private javax.swing.JLabel title7;
     private javax.swing.JLabel title8;
+    private javax.swing.JLabel title9;
     private javax.swing.JButton titleSearchButton;
     private javax.swing.JTextArea titleSearchTextField;
     // End of variables declaration//GEN-END:variables
