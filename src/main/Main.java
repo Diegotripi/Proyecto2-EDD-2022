@@ -25,8 +25,7 @@ public class Main {
         GlobalUI.openMainPage();
         FunctionsTXT.loadExistingArticlesInDB();
         FunctionsTXT.save();
-        FunctionsUI.fillComboBoxWithListStrings(GlobalUI.getSearchArticlePage().getAuthorComboBox(), GlobalUI.getListAuthor());
-        FunctionsUI.fillComboBoxWithListStrings(GlobalUI.getSearchArticlePage().getKeyWordsComboBox(), GlobalUI.getListWords());
+        GlobalUI.getAuthorHT().printAllArticlesConsole();
 //        testHash();
     }
 

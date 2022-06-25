@@ -15,6 +15,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import main.FunctionsTXT;
+import Classes.Author;
 
 /**
  *
@@ -151,7 +152,10 @@ public class FunctionsUI {
         return (index < 0) ? index * -1 : index;
     }
     
-    public static void fillAuthorsComboBox(){
+    
+    
+    public static void addArticleToAuthorHashTable(Article article){
+        
         
     }
 }

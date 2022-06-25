@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import DataStructures.LinkedList;
+
 /**
  *
  * @author isaac
@@ -31,5 +33,13 @@ public class Author implements HashObject {
     public String getName() {
         return name;
     }
+    
+
+    
+    
+    
+    
+    
+    
 
 }

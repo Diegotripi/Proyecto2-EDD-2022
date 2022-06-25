@@ -6,6 +6,7 @@
 package DataStructures;
 
 import Classes.Article;
+import Classes.Author;
 import Classes.HashObject;
 import UI.GlobalUI;
 
@@ -88,7 +89,7 @@ public class HashTable {
         // this makes the search made by the user easier
         int index = hashString(articleToAdd.getTitle().toLowerCase());
         boolean isTitleInList = getTable()[index].isTitleInList(articleToAdd.getTitle());
-        // addAuthorInAuxHT(articleToAdd)
+        //addAuthorInAuxHT(articleToAdd)
         // addKeyWordInAuxHT(articleToAdd)
 
         if (isTitleInList) {
@@ -134,6 +135,9 @@ public class HashTable {
             
             if (aux) {
                 list.addEnd(name[i]);
+                addAuthorInAuxHT(articleToAdd, name[i]);
+                
+                
             }
             
         }
@@ -241,5 +245,14 @@ public class HashTable {
             getTable()[index].addEnd(object);
         }
     }
+    
+
+    
+    public void addAuthorInAuxHT(Article articleToAdd, String name){
+        int index = GlobalUI.getAuthorHT().hashString(name.toLowerCase());
+        GlobalUI.getAuthorHT().getTable()[index].addEnd(articleToAdd);
+    }
+    
+    
 
 }
