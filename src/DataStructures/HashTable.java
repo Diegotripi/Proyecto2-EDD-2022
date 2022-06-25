@@ -134,11 +134,10 @@ public class HashTable {
             }
             
             if (aux) {
-                list.addEnd(name[i]);
-                addAuthorInAuxHT(articleToAdd, name[i]);
-                
-                
+                list.addEnd(name[i]);  
             }
+            
+            addAuthorInAuxHT(articleToAdd, name[i]);
             
         }
         
