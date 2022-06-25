@@ -5,6 +5,9 @@
  */
 package UI;
 
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author isaac
@@ -18,6 +21,16 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+    }
+    
+    //FALTA JAVADOC
+    public JComboBox<String> getjComboBox1() {
+        return jComboBox1;
+    }
+
+    //FALTA JAVADOC
+    public JTextArea getjTextArea1() {
+        return jTextArea1;
     }
 
     /**
@@ -33,6 +46,11 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         title = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         backToMenuButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,7 +60,6 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("Analizar Resumen");
         jPanel2.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
@@ -59,6 +76,27 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         });
         getContentPane().add(backToMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, -1));
 
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 470, -1));
+
+        jButton1.setText("Analizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 470, 110));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 530, 290));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/output-onlinepngtools.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-670, -40, 1400, 580));
 
@@ -68,6 +106,11 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
     private void backToMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuButtonActionPerformed
         GlobalUI.openMainPage();
     }//GEN-LAST:event_backToMenuButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String key = (String) getjComboBox1().getSelectedItem();
+        FunctionsUI.analyzeSummary(key, getjTextArea1());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,7 +150,12 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backToMenuButton;
     private javax.swing.JLabel background;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

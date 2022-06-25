@@ -6,6 +6,8 @@
 package DataStructures;
 
 import Classes.Article;
+import Classes.HashObject;
+import UI.GlobalUI;
 
 /**
  *
@@ -79,19 +81,47 @@ public class HashTable {
      * @param articleToAdd
      * @return boolean
      */
+    // addArticle is its own method and is not included in HashObject because
+    // its necessary to know when the object added is an article
     public boolean addArticle(Article articleToAdd) {
         // the str given for hashing is the title in lowerCase 
         // this makes the search made by the user easier
         int index = hashString(articleToAdd.getTitle().toLowerCase());
         boolean isTitleInList = getTable()[index].isTitleInList(articleToAdd.getTitle());
+        // addAuthorInAuxHT(articleToAdd)
+        // addKeyWordInAuxHT(articleToAdd)
 
         if (isTitleInList) {
             return false;
         } else {
             getTable()[index].addEnd(articleToAdd);
+            //FALTA ANHADIR ESTO EN EL JAVADOC
+            addTitleInList(articleToAdd);
             return true;
         }
 
+    }
+    
+    //FALTA JAVADOC 
+    public void addTitleInList(Article articleToAdd) {
+        GlobalUI.getListTitles().addEnd(articleToAdd.getTitle());
+    }
+
+    /**
+     * Given and HashObject, add Them in the HT, or modify it if already exists
+     *
+     * @param hashObject
+     */
+    public void addHashObject(HashObject hashObject) {
+        // the str given for hashing is the object key in lowerCase 
+        // this makes the search made by the user easier
+        int index = hashString(hashObject.getKey().toLowerCase());
+
+        // código para buscar si el objeto ya está en el HT una vez encontrado el índice
+//        boolean isObjectInList = getTable()[index].isHashObjectInList(hashObject.getKey());
+
+//Código para añadir el objeto
+        getTable()[index].addEnd(hashObject);
     }
 
     /**
@@ -101,18 +131,18 @@ public class HashTable {
      * @return Article
      */
     public Article searchArticleByTitle(String title) {
-        Article article= null;
+        Article article = null;
         //all hashing must be in loweCase
         int index = hashString(title.toLowerCase());
         LinkedList articlesInIndex = getTable()[index];
         Node pointer = articlesInIndex.getHead();
         while (pointer != null) {
-            if ((title.toLowerCase()).equals( ((Article) pointer.getElement()).getTitle().toLowerCase() )) {
-                article = ((Article)pointer.getElement());
+            if ((title.toLowerCase()).equals(((Article) pointer.getElement()).getTitle().toLowerCase())) {
+                article = ((Article) pointer.getElement());
             }
             pointer = pointer.getNext();
         }
-        
+
         return article;
     }
 
@@ -132,6 +162,16 @@ public class HashTable {
      */
     public int getSize() {
         return size;
+    }
+    
+    //FALTA EL JAVADOC
+    public void addWordInListOfRep(WordRepetition object) {
+        int index = hashString(object.getWord().toLowerCase());
+        boolean isTitleInList = getTable()[index].isTitleRepetitionIn(object);
+        
+        if (!isTitleInList) {
+            getTable()[index].addEnd(object);
+        }
     }
 
 }

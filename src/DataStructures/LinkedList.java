@@ -6,6 +6,7 @@
 package DataStructures;
 
 import Classes.Article;
+import Classes.HashObject;
 
 /**
  *
@@ -306,6 +307,23 @@ public class LinkedList {
     }
 
     /**
+     * Checks if the given hashObject is currently inside the list
+     *
+     * @param key
+     * @return boolean
+     */
+    public boolean isHashObjectInList(String key) {
+        Node pointer = getHead();
+        while (pointer != null) {
+            if (((HashObject) pointer.getElement()).getKey().equals(key)) {
+                return true;
+            }
+            pointer = pointer.getNext();
+        }
+        return false;
+    }
+
+    /**
      * Getter for head
      *
      * @return head
@@ -348,6 +366,63 @@ public class LinkedList {
      */
     public boolean isEmpty() {
         return getHead() == null;
+    }
+    
+    //FALTA JAVADOC
+    public boolean isTitleRepetitionIn(WordRepetition object) {
+        Node pointer = getHead();
+        while (pointer != null) {
+            if (pointer.getElement().equals(object)) {
+                return true;
+            }
+            pointer = pointer.getNext();
+        }
+        return false;
+    }
+    
+    //FALTA JAVADOC
+    public void addEndNoRep(String element) {
+        Node node = new Node(element);
+        if (isEmpty()) {
+            setHead(node);
+        } else {
+            Node pointer = getHead();
+            while (pointer.getNext() != null) {
+                pointer = pointer.getNext();
+            }
+            if (!isStringInList(element)) {
+                pointer.setNext(node);
+            } else {
+            }
+        }
+        this.length++;
+    }
+    
+    //FALTA JAVADOC
+    public boolean isStringInList(String element) {
+        Node pointer = getHead();
+        boolean found = false;
+        while (pointer != null) {
+            if (((String) pointer.getElement()).equals(element)) {
+                found = true;
+                break;
+            }
+            pointer = pointer.getNext();
+        }
+        return found;
+    }
+    
+    //FALTA JAVADOC Y PONER QUE AL FINAL SE PONGA UN PUNTO EN VEZ DE UNA COMA
+    public String getAuthorsString() {
+        String result = "";
+        
+        Node pointer = getHead();
+        while (pointer != null) {
+            result += (String) pointer.getElement() + ",";
+            pointer = pointer.getNext();
+        }
+        
+        return result;
     }
 
 }

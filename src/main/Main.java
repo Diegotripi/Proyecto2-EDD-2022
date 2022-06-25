@@ -23,8 +23,7 @@ public class Main {
     public static void main(String[] args) {
         GlobalUI.openMainPage();
         FunctionsTXT.loadExistingArticlesInDB();
-        GlobalUI.getArticleHT().printAllArticlesConsole();
-        
+        FunctionsTXT.save();
 //        testHash();
     }
 
