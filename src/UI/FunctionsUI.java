@@ -56,7 +56,7 @@ public class FunctionsUI {
             }
         }
     }
-    
+
     //FALTA JAVADOC
     public static void fillComboBoxWithListStrings(JComboBox<String> comboBox, LinkedList List) {
         comboBox.removeAllItems();
@@ -68,27 +68,27 @@ public class FunctionsUI {
             pointer = pointer.getNext();
         }
     }
-    
+
     //FALTA JAVADOC
     public static void analyzeSummary(String key, JTextArea textArea) {
         if (key != null) {
-            
+
             String textResult = "Nombre del trabajo: " + key + "\n";
-            
+
             LinkedList list = GlobalUI.getArticleHT().getTable()[hashStringUpperC(key, GlobalUI.getArticleHT())];
-            
+
             Node pointer = list.getHead();
             while (pointer != null && !((Article) pointer.getElement()).getTitle().equals(key)) {
                 pointer = pointer.getNext();
             }
-            
-            textResult += "Autores: " + ((Article) pointer.getElement()).getAuthors().getAuthorsString() + "\n\n";               
+
+            textResult += "Autores: " + ((Article) pointer.getElement()).getAuthors().getAuthorsString() + "\n\n";
             String summary = ((Article) pointer.getElement()).getBody();
-            
-            String[] wordArray = summary.replaceAll("[,.;:'?!)(]", "").replace(" ","\n").split("\n");
+
+            String[] wordArray = summary.replaceAll("[,.;:'?!)(]", "").replace(" ", "\n").split("\n");
             String[] keyWordsArray = new String[((Article) pointer.getElement()).getKeyWords().getLength()];
             HashTable wordsHT = new HashTable();
-            
+
             int index2 = 0;
             Node pointer5 = ((Article) pointer.getElement()).getKeyWords().getHead();
             while (pointer5 != null) {
@@ -98,7 +98,7 @@ public class FunctionsUI {
                 index2++;
                 pointer5 = pointer5.getNext();
             }
-            
+
             for (int i = 0; i < wordArray.length; i++) {
                 int index = FunctionsUI.hashStringUpperC(wordArray[i], wordsHT);
                 try {
@@ -110,15 +110,15 @@ public class FunctionsUI {
                         }
                         pointer1 = pointer1.getNext();
                     }
-                    
-                } catch (Exception e){
-                    
+
+                } catch (Exception e) {
+
                 }
             }
 
             for (int i = 0; i < keyWordsArray.length; i++) {
                 int indexHT = FunctionsUI.hashStringUpperC(keyWordsArray[i], wordsHT);
-                
+
                 Node pointer1 = wordsHT.getTable()[indexHT].getHead();
                 while (pointer1 != null) {
                     if (((WordRepetition) pointer1.getElement()).getWord().equals(keyWordsArray[i])) {
@@ -129,16 +129,16 @@ public class FunctionsUI {
                     pointer1 = pointer1.getNext();
                 }
             }
-             
-        textArea.setText(textResult);
-            
+
+            textArea.setText(textResult);
+
         } else {
             JOptionPane.showMessageDialog(null, "Elija uno de los articulos");
         }
     }
-    
+
     //FALTA JAVADOC
-    public static int hashStringUpperC (String string, HashTable HT) {
+    public static int hashStringUpperC(String string, HashTable HT) {
         String str = string.toLowerCase();
         long hash = 5381;
         for (int i = 0; i < str.length(); i++) {
@@ -152,10 +152,41 @@ public class FunctionsUI {
         return (index < 0) ? index * -1 : index;
     }
     
-    
-    
-    public static void addArticleToAuthorHashTable(Article article){
-        
-        
+    /**
+     * Get author information from the SearchArticleUI and find articles
+     * @param comboBox
+     * @param comboBox2 
+     */
+
+    public static void fillAuthorArticleTitleComboBox(JComboBox<String> comboBox, JComboBox<String> comboBox2) {
+
+        if (comboBox2.getSelectedItem() != null) {
+            String author = comboBox2.getSelectedItem().toString();
+            int index = GlobalUI.getAuthorHT().hashString(author.toLowerCase());
+            LinkedList list = GlobalUI.getAuthorHT().getTable()[index];
+            LinkedList list2 = new LinkedList();
+            Node pointer = list.getHead();
+            for (int i = 0; i < list.getLength(); i++) {
+                list2.addEnd(((Article) pointer.getElement()).getTitle());
+                pointer = pointer.getNext();
+            }
+            fillComboBoxWithListStrings(comboBox, list2);
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecciona un autor");
+        }
+
     }
+    
+    
+    public static void getArticleTitle(JComboBox<String> comboBox){
+        if (comboBox.getSelectedItem() != null) {
+            String title = comboBox.getSelectedItem().toString();
+            findArticleByName(title);
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecciona un articulo");
+        }
+    }
+    
+
 }
