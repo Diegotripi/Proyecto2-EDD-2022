@@ -12,6 +12,7 @@ package Classes;
 public class KeyWord implements HashObject {
 
     private String keyWord;
+    private String title;
 
     /**
      * Gets Keyword in order to hash
@@ -30,6 +31,29 @@ public class KeyWord implements HashObject {
      */
     public String getKeyWord() {
         return keyWord;
+    }
+    
+    /**
+     * Set the author name
+     * @param name 
+     */
+    public void setName(String name) {
+        this.keyWord = name;
+    }
+    /**
+     * Get the article title
+     * @return 
+     */
+    public String getTitle() {
+        return title;
+    }
+    /**
+     * Set the article title
+     * @param title 
+     */
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }

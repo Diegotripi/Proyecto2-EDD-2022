@@ -22,6 +22,11 @@ public class GlobalUI {
 
     private static final HashTable articleHT = new HashTable();
     private static final LinkedList listTitles = new LinkedList();
+    private static  LinkedList listAuthors = new LinkedList();
+    private static  LinkedList listWords = new LinkedList();
+    private static  HashTable authorHT = new HashTable();
+    private static  HashTable keywordsHT = new HashTable();
+    
 
     /**
      * Opens proyect MainPage
@@ -104,5 +109,74 @@ public class GlobalUI {
     public static LinkedList getListTitles() {
         return listTitles;
     }
+    
+    /**
+     * Return the authors list
+     * @return listAuthors
+     */
+    public static LinkedList getListAuthor() {
+        return listAuthors;
+    }
+    
+    /**
+     * Set an authors List 
+     * @param list
+     */
+    public static void setListAuthor(LinkedList list) {
+        GlobalUI.listAuthors = list;
+    }
+    
+    /**
+     * Return the words list 
+     * @return listWords
+     */
+
+    public static LinkedList getListWords() {
+        return listWords;
+    }
+    /**
+     * set a words list in the globalUI
+     * @param listWords 
+     */
+    public static void setListWords(LinkedList listWords) {
+        GlobalUI.listWords = listWords;
+    }
+    
+    /**
+     * Return Author Hash Table
+     * @return authorHt
+     */
+    public static HashTable getAuthorHT() {
+        return authorHT;
+    }
+    
+    /**
+     * Set Author Hash Table
+     * @param authorHT 
+     */
+
+    public static void setAuthorHT(HashTable authorHT) {
+        GlobalUI.authorHT = authorHT;
+    }
+    /**
+     * Return Keywords Hash Table
+     * @return keywordsHT
+     */
+
+    public static HashTable getKeywordsHT() {
+        return keywordsHT;
+    }
+    
+    /**
+     * Get Keywords Hash Table
+     * @param keywordsHT 
+     */
+
+    public static void setKeywordsHT(HashTable keywordsHT) {
+        GlobalUI.keywordsHT = keywordsHT;
+    }
+        
+    
+    
 
 }

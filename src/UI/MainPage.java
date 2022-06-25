@@ -107,6 +107,7 @@ public class MainPage extends javax.swing.JFrame {
 
     private void openSearchPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSearchPageButtonActionPerformed
         GlobalUI.openSearchArticlePage();
+        FunctionsUI.fillComboBoxWithListStrings(GlobalUI.getSearchArticlePage().getAuthorComboBox(), GlobalUI.getListAuthor());
     }//GEN-LAST:event_openSearchPageButtonActionPerformed
 
     private void openAnalyzePageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openAnalyzePageButtonActionPerformed
