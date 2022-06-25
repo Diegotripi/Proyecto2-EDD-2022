@@ -25,7 +25,6 @@ public class Main {
         GlobalUI.openMainPage();
         FunctionsTXT.loadExistingArticlesInDB();
         FunctionsTXT.save();
-        GlobalUI.getAuthorHT().printAllArticlesConsole();
 //        testHash();
     }
 
