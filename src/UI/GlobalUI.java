@@ -7,6 +7,7 @@ package UI;
 
 import Classes.Article;
 import DataStructures.HashTable;
+import DataStructures.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +21,7 @@ public class GlobalUI {
     private static final AnalyzeArticlePage analyzeArticlePage = new AnalyzeArticlePage();
 
     private static final HashTable articleHT = new HashTable();
+    private static final LinkedList listTitles = new LinkedList();
 
     /**
      * Opens proyect MainPage
@@ -96,6 +98,11 @@ public class GlobalUI {
             JOptionPane.showMessageDialog(null, "El artículo: '" + article.getTitle() + "' ya existe en la base de datos", "Advertencia", 0);
         }
 
+    }
+    
+    //FALTA JAVADOC
+    public static LinkedList getListTitles() {
+        return listTitles;
     }
 
 }

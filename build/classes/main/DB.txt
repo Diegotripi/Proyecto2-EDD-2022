@@ -20,10 +20,9 @@ entre los que se cuenta Caquot-Kerisel y Meyerhof, aplicado en las fundaciones i
 de las fundaciones directas, implementa el método de Terzaghi y Vesic. Igualmente, se realizó un
 modelo de cálculo para el diseño de todas las fundaciones de la estructura, el cual fue implementado en
 el complemento obtenido en este trabajo de investigación.
-Palabras claves: fundaciones directas, AutoCAD, complemento, C#
+Palabras claves: fundaciones directas, AutoCAD, complemento, C#.
 /
-Arquitectura referencial para mecanismos de
-Internacionalización y localización en PHP.
+Arquitectura referencial para mecanismos de Internacionalización y localización en PHP.
 Autores
 Christian Guillén Drija
 Andrea Pérez
@@ -54,8 +53,7 @@ posibles variantes que puedan generarse. No obstante, la Arquitectura de Referen
 Análisis de Dominio puede utilizarse como referente dentro de una organización para evaluar la mejor opción al
 momento de seleccionar la alternativa arquitectónica más robusta al considerar un conjunto de frameworks de
 desarrollo.
-Palabras Claves: análisis de dominio, ingeniería de dominio, PHP, arquitectura referencial,
-internacionalización y localización.
+Palabras claves: análisis de dominio, ingeniería de dominio, PHP, arquitectura referencial, internacionalización y localización.
 /
 Sistema de diseño basado en Grid
 Autores
@@ -89,8 +87,7 @@ potencia la creación tanto de componentes como de aplicaciones debido a que con
 la estructura y con el segundo, se distribuye el contenido en cada sección.
 Palabras claves: diseño, componentes, sistema de diseño, Grid, hojas de estilo, UX/UI.
 /
-GraphQL vs REST: una comparación desde la perspectiva
-de eficiencia de desempeño.
+GraphQL vs REST: una comparación desde la perspectiva de eficiencia de desempeño.
 Autores
 Christian Guillén Drija
 Reynaldo Quintero
@@ -124,5 +121,5 @@ general, GraphQL debería utilizarse cuando se requiere menor utilización de la
 que la API maneja están estrechamente relacionados y cuando no sea necesario utilizar la totalidad de la
 información obtenida. Por otra parte, REST debería utilizarse en caso de necesitarse mayor velocidad de
 respuesta y cuando se requiera utilizar la totalidad de la información de los recursos manejados.
-Palabras Claves: REST, GraphQL, cliente-servidor, mecanismo arquitectónico, calidad de software.
+Palabras claves: REST, GraphQL, cliente-servidor, mecanismo arquitectónico, calidad de software.
 /

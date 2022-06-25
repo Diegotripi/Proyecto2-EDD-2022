@@ -7,6 +7,7 @@ package DataStructures;
 
 import Classes.Article;
 import Classes.HashObject;
+import UI.GlobalUI;
 
 /**
  *
@@ -87,7 +88,6 @@ public class HashTable {
         // this makes the search made by the user easier
         int index = hashString(articleToAdd.getTitle().toLowerCase());
         boolean isTitleInList = getTable()[index].isTitleInList(articleToAdd.getTitle());
-        // addTitleInList(articleToAdd)
         // addAuthorInAuxHT(articleToAdd)
         // addKeyWordInAuxHT(articleToAdd)
 
@@ -95,9 +95,16 @@ public class HashTable {
             return false;
         } else {
             getTable()[index].addEnd(articleToAdd);
+            //FALTA ANHADIR ESTO EN EL JAVADOC
+            addTitleInList(articleToAdd);
             return true;
         }
 
+    }
+    
+    //FALTA JAVADOC 
+    public void addTitleInList(Article articleToAdd) {
+        GlobalUI.getListTitles().addEnd(articleToAdd.getTitle());
     }
 
     /**
@@ -155,6 +162,16 @@ public class HashTable {
      */
     public int getSize() {
         return size;
+    }
+    
+    //FALTA EL JAVADOC
+    public void addWordInListOfRep(WordRepetition object) {
+        int index = hashString(object.getWord().toLowerCase());
+        boolean isTitleInList = getTable()[index].isTitleRepetitionIn(object);
+        
+        if (!isTitleInList) {
+            getTable()[index].addEnd(object);
+        }
     }
 
 }

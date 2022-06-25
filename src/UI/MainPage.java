@@ -111,6 +111,7 @@ public class MainPage extends javax.swing.JFrame {
 
     private void openAnalyzePageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openAnalyzePageButtonActionPerformed
         GlobalUI.openAnalyzeArticlePage();
+        FunctionsUI.fillComboBoxWithListStrings(GlobalUI.getAnalyzeArticlePage().getjComboBox1(), GlobalUI.getListTitles());
     }//GEN-LAST:event_openAnalyzePageButtonActionPerformed
 
     /**

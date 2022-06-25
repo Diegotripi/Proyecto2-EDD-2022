@@ -8,10 +8,12 @@ package main;
 import Classes.Article;
 import DataStructures.LinkedList;
 import DataStructures.Node;
+import UI.FunctionsUI;
 import UI.GlobalUI;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 
 /**
@@ -107,7 +109,7 @@ public class FunctionsTXT {
                     if (line.toLowerCase().contains("palabras claves:")) {
                         controlNumber++;
                         String[] splitAux = line.split(":");
-                        String[] keyWordSplit = splitAux[1].split(",");
+                        String[] keyWordSplit = splitAux[1].replace(".","").split(",");
                         for (String auxKeyWord : keyWordSplit) {
                             keyWords.addEnd(auxKeyWord.trim());
                         }
@@ -117,7 +119,7 @@ public class FunctionsTXT {
                     }
                     break;
                 case 3:
-                    String[] lastKeyWordSplit = line.split(",");
+                    String[] lastKeyWordSplit = line.replace(".","").split(",");
                     for (String auxKeyWord : lastKeyWordSplit) {
                         keyWords.addEnd(auxKeyWord.trim());
                     }
@@ -162,4 +164,61 @@ public class FunctionsTXT {
             pointer = pointer.getNext();
         }
     }
+    
+    //FALTA EL JAVADOC
+    public static void save() {
+        String path = "src\\main\\DB.txt";
+        String databaseText = "";
+        LinkedList listOfArticles = GlobalUI.getListTitles();
+        Node pointer = listOfArticles.getHead();
+        while (pointer != null) {
+            String key = (String) pointer.getElement();
+            int index = FunctionsUI.hashStringUpperC(key, GlobalUI.getArticleHT());
+            
+            LinkedList listOfArticlesInIndex = GlobalUI.getArticleHT().getTable()[index];
+            Article article = null;
+            
+            Node pointer1 = listOfArticlesInIndex.getHead();
+            while (pointer1 != null) {
+                if (key.equals(((Article) pointer1.getElement()).getTitle())) {
+                    article  = ((Article) pointer1.getElement());
+                }
+                pointer1 = pointer1.getNext();
+            }
+            
+            databaseText += article.getTitle() + "\n";
+            databaseText += "Autores\n";
+            
+            Node pointer2 = article.getAuthors().getHead();
+            while (pointer2 != null) {
+                databaseText += (String) pointer2.getElement() + "\n";
+                pointer2 = pointer2.getNext();
+            }
+            
+            databaseText += "Resumen\n";
+            databaseText += article.getBody();
+            
+            String keyWords = "Palabras claves: ";
+            Node pointer3 = article.getKeyWords().getHead();
+            while (pointer3.getNext() != null) {
+                keyWords += ((String) pointer3.getElement()) + ", ";
+                pointer3 = pointer3.getNext();
+            }
+            keyWords += ((String) pointer3.getElement()) + ".";
+            
+            databaseText += keyWords + "\n";
+            databaseText += "/\n";
+            
+            pointer = pointer.getNext();
+        }
+        
+        try {
+            PrintWriter pw = new PrintWriter(path);
+            pw.print(databaseText);
+            pw.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo guardar la información");
+        }
+    }
+    
 }
