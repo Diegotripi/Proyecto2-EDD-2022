@@ -97,15 +97,84 @@ public class HashTable {
             getTable()[index].addEnd(articleToAdd);
             //FALTA ANHADIR ESTO EN EL JAVADOC
             addTitleInList(articleToAdd);
+            addAuthorInList(articleToAdd);
+            addWordsInList(articleToAdd);
             return true;
         }
 
     }
-    
+
     //FALTA JAVADOC 
     public void addTitleInList(Article articleToAdd) {
         GlobalUI.getListTitles().addEnd(articleToAdd.getTitle());
     }
+    /**
+     * Create a new LinkedList with the Authors
+     * @param articleToAdd 
+     */
+
+    public void addAuthorInList(Article articleToAdd) {
+
+        LinkedList list = GlobalUI.getListAuthor();
+        String authors = articleToAdd.getAuthors().getAuthorsString();
+        String[] name = authors.split(",");
+        
+        
+        for (int i = 0; i < name.length; i++) {
+            boolean aux = true;
+            Node temp = list.getHead();
+            for (int j = 0; j < list.getLength(); j++) {
+                //Validate if an author is already added
+                if (temp.getElement().toString().equalsIgnoreCase(name[i])) {
+                    aux = false;
+                }
+                
+                temp = temp.getNext();
+            }
+            
+            if (aux) {
+                list.addEnd(name[i]);
+            }
+            
+        }
+        
+        GlobalUI.setListAuthor(list);
+
+    }
+    /**
+     * Create a new LinkedList with the keywords
+     * @param articleToAdd 
+     */
+    public void addWordsInList(Article articleToAdd) {
+
+        LinkedList list = GlobalUI.getListWords();
+        String words = articleToAdd.getKeyWords().getAuthorsString();
+        String[] name = words.split(",");
+        
+        
+        for (int i = 0; i < name.length; i++) {
+            boolean aux = true;
+            Node temp = list.getHead();
+            for (int j = 0; j < list.getLength(); j++) {
+                //Validate if an author is already added
+                if (temp.getElement().toString().equalsIgnoreCase(name[i])) {
+                    aux = false;
+                }
+                
+                temp = temp.getNext();
+            }
+            
+            if (aux) {
+                list.addEnd(name[i]);
+            }
+            
+        }
+        
+        GlobalUI.setListWords(list);
+
+    }
+    
+    
 
     /**
      * Given and HashObject, add Them in the HT, or modify it if already exists
@@ -119,7 +188,6 @@ public class HashTable {
 
         // código para buscar si el objeto ya está en el HT una vez encontrado el índice
 //        boolean isObjectInList = getTable()[index].isHashObjectInList(hashObject.getKey());
-
 //Código para añadir el objeto
         getTable()[index].addEnd(hashObject);
     }
@@ -163,12 +231,12 @@ public class HashTable {
     public int getSize() {
         return size;
     }
-    
+
     //FALTA EL JAVADOC
     public void addWordInListOfRep(WordRepetition object) {
         int index = hashString(object.getWord().toLowerCase());
         boolean isTitleInList = getTable()[index].isTitleRepetitionIn(object);
-        
+
         if (!isTitleInList) {
             getTable()[index].addEnd(object);
         }

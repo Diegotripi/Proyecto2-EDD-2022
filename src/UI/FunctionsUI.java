@@ -150,4 +150,8 @@ public class FunctionsUI {
         int index = (int) (hash % HT.getSize());
         return (index < 0) ? index * -1 : index;
     }
+    
+    public static void fillAuthorsComboBox(){
+        
+    }
 }

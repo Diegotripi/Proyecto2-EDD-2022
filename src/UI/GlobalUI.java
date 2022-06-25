@@ -22,6 +22,8 @@ public class GlobalUI {
 
     private static final HashTable articleHT = new HashTable();
     private static final LinkedList listTitles = new LinkedList();
+    private static  LinkedList listAuthors = new LinkedList();
+    private static  LinkedList listWords = new LinkedList();
 
     /**
      * Opens proyect MainPage
@@ -104,5 +106,39 @@ public class GlobalUI {
     public static LinkedList getListTitles() {
         return listTitles;
     }
+    
+    /**
+     * Return the authors list
+     * @return listAuthors
+     */
+    public static LinkedList getListAuthor() {
+        return listAuthors;
+    }
+    
+    /**
+     * Set an authors List 
+     * @param list
+     */
+    public static void setListAuthor(LinkedList list) {
+        GlobalUI.listAuthors = list;
+    }
+    
+    /**
+     * Return the words list 
+     * @return listWords
+     */
+
+    public static LinkedList getListWords() {
+        return listWords;
+    }
+    /**
+     * set a words list in the globalUI
+     * @param listWords 
+     */
+    public static void setListWords(LinkedList listWords) {
+        GlobalUI.listWords = listWords;
+    }
+        
+    
 
 }
