@@ -171,6 +171,9 @@ public class HashTable {
                 list.addEnd(name[i]);
             }
             
+            addKeywordsInAuxHT(articleToAdd, name[i]);
+            
+            
         }
         
         GlobalUI.setListWords(list);
@@ -246,10 +249,25 @@ public class HashTable {
     }
     
 
-    
+    /**
+     * add article with authors hash 
+     * @param articleToAdd
+     * @param name 
+     */
     public void addAuthorInAuxHT(Article articleToAdd, String name){
         int index = GlobalUI.getAuthorHT().hashString(name.toLowerCase());
         GlobalUI.getAuthorHT().getTable()[index].addEnd(articleToAdd);
+    }
+    
+    
+    /**
+     * add article with keywords hash
+     * @param articleToAdd
+     * @param name 
+     */
+    public void addKeywordsInAuxHT(Article articleToAdd, String name){
+        int index = GlobalUI.getAuthorHT().hashString(name.toLowerCase());
+        GlobalUI.getKeywordsHT().getTable()[index].addEnd(articleToAdd);
     }
     
     

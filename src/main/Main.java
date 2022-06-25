@@ -7,7 +7,6 @@ package main;
 
 import Classes.Article;
 import DataStructures.LinkedList;
-import UI.FunctionsUI;
 import UI.GlobalUI;
 
 /**
@@ -25,6 +24,7 @@ public class Main {
         GlobalUI.openMainPage();
         FunctionsTXT.loadExistingArticlesInDB();
         FunctionsTXT.save();
+        GlobalUI.getKeywordsHT().printAllArticlesConsole();
 //        testHash();
     }
 
