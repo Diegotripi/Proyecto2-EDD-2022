@@ -29,7 +29,7 @@ public class GlobalUI {
     
 
     /**
-     * Opens proyect MainPage
+     * Opens project MainPage
      */
     public static void openMainPage() {
         getMainPage().setVisible(true);
@@ -105,7 +105,10 @@ public class GlobalUI {
 
     }
     
-    //FALTA JAVADOC
+    /**
+     * Returns the list of titles
+     * @return listTitles
+     */
     public static LinkedList getListTitles() {
         return listTitles;
     }
