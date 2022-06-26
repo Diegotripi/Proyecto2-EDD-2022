@@ -28,7 +28,13 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
-                int selectedOption = JOptionPane.showConfirmDialog(null, "¿Desea guardar los datos?", "Guardar los datos en la base de datos", JOptionPane.YES_NO_OPTION); 
+                int selectedOption = JOptionPane.showOptionDialog(null, "Guardar los datos en la base de datos",
+                         "¿Desea guardar los datos?" ,
+                         JOptionPane.YES_NO_OPTION,
+                         JOptionPane.QUESTION_MESSAGE,
+                         null,
+                         new Object[] { "Sí", "No"},
+                         "No");
                 if (selectedOption == JOptionPane.YES_OPTION) {
                     FunctionsTXT.save();
                 }
