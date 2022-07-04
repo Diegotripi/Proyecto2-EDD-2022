@@ -9,6 +9,7 @@ import Classes.Article;
 import Classes.Author;
 import Classes.HashObject;
 import Classes.KeyWord;
+import UI.FunctionsUI;
 import UI.GlobalUI;
 
 /**
@@ -88,7 +89,8 @@ public class HashTable {
     public boolean addArticle(Article articleToAdd) {
         // the str given for hashing is the title in lowerCase 
         // this makes the search made by the user easier
-        int index = hashString(articleToAdd.getTitle().toLowerCase());
+        String beforeHash = FunctionsUI.trimWord(articleToAdd.getTitle().toLowerCase());
+        int index = hashString(beforeHash);
         boolean isTitleInList = getTable()[index].isTitleInList(articleToAdd.getTitle());
         //addAuthorInAuxHT(articleToAdd)
         // addKeyWordInAuxHT(articleToAdd)
@@ -104,6 +106,16 @@ public class HashTable {
         }
 
     }
+    
+//    public String trimWord(String word) {
+//        String aux = word.trim();
+//        char end = aux.charAt(word.length()-1);
+//        if (end == '.') {
+//            aux = aux.substring(0, aux.length()-1);
+//        }
+//        System.out.println(aux);
+//        return aux;
+//    }
 
     /**
      * Adds the article's title to the title list
@@ -209,11 +221,12 @@ public class HashTable {
     public Article searchArticleByTitle(String title) {
         Article article = null;
         //all hashing must be in loweCase
-        int index = hashString(title.toLowerCase());
+        String trimmed = FunctionsUI.trimWord(title.toLowerCase());
+        int index = hashString(trimmed);
         LinkedList articlesInIndex = getTable()[index];
         Node pointer = articlesInIndex.getHead();
         while (pointer != null) {
-            if ((title.toLowerCase()).equals(((Article) pointer.getElement()).getTitle().toLowerCase())) {
+            if ((trimmed.toLowerCase()).equals(   FunctionsUI.trimWord (((Article) pointer.getElement()).getTitle().toLowerCase())) ) {
                 article = ((Article) pointer.getElement());
             }
             pointer = pointer.getNext();

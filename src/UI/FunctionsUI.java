@@ -49,7 +49,7 @@ public class FunctionsUI {
             //  JOptionPane.showMessageDialog(null, "Error al leer el archivo, por favor intentar de nuevo", "Advertencia", 2);
             JOptionPane.showMessageDialog(null, "Por favor escribir un título para su búsqueda", "Advertencia", 2);
         } else {
-            Article articleFound = GlobalUI.getArticleHT().searchArticleByTitle(title);
+            Article articleFound = GlobalUI.getArticleHT().searchArticleByTitle(trimWord(title));
             if (articleFound == null) {
                 JOptionPane.showMessageDialog(null, "El artículo: '" + title + "' no está registrado en la base de datos", "Advertencia", 0);
             } else {
@@ -60,10 +60,11 @@ public class FunctionsUI {
     }
 
     /**
-     * Fills the ComboBox of the respective window with the title of the articles
-     * 
+     * Fills the ComboBox of the respective window with the title of the
+     * articles
+     *
      * @param comboBox
-     * @param List 
+     * @param List
      */
     public static void fillComboBoxWithListStrings(JComboBox<String> comboBox, LinkedList List) {
         comboBox.removeAllItems();
@@ -77,29 +78,29 @@ public class FunctionsUI {
     }
 
     /**
-     * Analyzes the repetition of the key words in the summary and places in the 
+     * Analyzes the repetition of the key words in the summary and places in the
      * TextArea of the window the analysis (String).
-     * 
+     *
      * @param key
-     * @param textArea 
+     * @param textArea
      */
     public static void analyzeSummary(String key, JTextArea textArea) {
         if (key != null) {
-            
+
             Article article = getArticle(key);
-            
+
             String textResult = "Nombre del trabajo: " + key + "\n";
 
             textResult += "Autores: " + article.getAuthors().getAuthorsString() + "\n\n";
             String summary = article.getBody();
-            
+
             String[] keyWordsArray = new String[article.getKeyWords().getLength()];
             HashTable wordsHT = new HashTable();
-            
+
             summary = replaceAllSpacedWordsInSummary(article, summary);
-            
+
             String[] wordArray = summary.replaceAll("[,.;:'?!)(]", "").replace(" ", "\n").split("\n");
-            
+
             int index2 = 0;
             Node pointer5 = article.getKeyWords().getHead();
             while (pointer5 != null) {
@@ -109,7 +110,7 @@ public class FunctionsUI {
                 index2++;
                 pointer5 = pointer5.getNext();
             }
-            
+
             for (int i = 0; i < wordArray.length; i++) {
                 int index = FunctionsUI.hashStringUpperC(wordArray[i], wordsHT);
                 try {
@@ -147,54 +148,56 @@ public class FunctionsUI {
             JOptionPane.showMessageDialog(null, "Elija uno de los articulos");
         }
     }
-    
+
     /**
      * Returns the article of the assigned key
+     *
      * @param key
      * @return article
      */
     public static Article getArticle(String key) {
         LinkedList list = GlobalUI.getArticleHT().getTable()[hashStringUpperC(key, GlobalUI.getArticleHT())];
 
-            Node pointer = list.getHead();
-            while (pointer != null && !((Article) pointer.getElement()).getTitle().equals(key)) {
-                pointer = pointer.getNext();
-            }
+        Node pointer = list.getHead();
+        while (pointer != null && !((Article) pointer.getElement()).getTitle().equals(key)) {
+            pointer = pointer.getNext();
+        }
         return (Article) pointer.getElement();
     }
-    
+
     /**
      * Replaces al the spaced words in the summary for the same words but with a
      * "_" between the words and converts all the letters to "lowercased" ones;
      * returns the changed summary.
-     * 
+     *
      * @param article
      * @param summary
      * @return summary
      */
     public static String replaceAllSpacedWordsInSummary(Article article, String summary) {
-            Node pointer7 = article.getKeyWords().getHead();
-            while (pointer7 != null) {
-                if (((String) pointer7.getElement()).contains(" ")) {
-                    String newWord = ((String) pointer7.getElement()).replaceAll(" ", "_");
-                    String newSummary = summary.toLowerCase().replaceAll(((String) pointer7.getElement()), newWord);
-                    summary = newSummary;
-                }
-                pointer7 = pointer7.getNext();
+        Node pointer7 = article.getKeyWords().getHead();
+        while (pointer7 != null) {
+            if (((String) pointer7.getElement()).contains(" ")) {
+                String newWord = ((String) pointer7.getElement()).replaceAll(" ", "_");
+                String newSummary = summary.toLowerCase().replaceAll(((String) pointer7.getElement()), newWord);
+                summary = newSummary;
             }
-            return summary;
+            pointer7 = pointer7.getNext();
+        }
+        return summary;
     }
 
     /**
-     * Converts the title (key) to the index of the HT (Doesn't have to be in 
+     * Converts the title (key) to the index of the HT (Doesn't have to be in
      * lowercase) and returns that index
-     * 
+     *
      * @param string
      * @param HT
      * @return index
      */
     public static int hashStringUpperC(String string, HashTable HT) {
         String str = string.toLowerCase();
+        str = FunctionsUI.trimWord(str);
         long hash = 5381;
         for (int i = 0; i < str.length(); i++) {
             // Multiply hash by 33 done by bit shift
@@ -206,11 +209,13 @@ public class FunctionsUI {
         int index = (int) (hash % HT.getSize());
         return (index < 0) ? index * -1 : index;
     }
-    
+
     /**
-     * Get author information from the SearchArticleUI and fill article titles information
+     * Get author information from the SearchArticleUI and fill article titles
+     * information
+     *
      * @param comboBox
-     * @param comboBox2 
+     * @param comboBox2
      */
     public static void fillAuthorArticleTitleComboBox(JComboBox<String> comboBox, JComboBox<String> comboBox2) {
 
@@ -219,7 +224,7 @@ public class FunctionsUI {
             int index = GlobalUI.getAuthorHT().hashString(author.toLowerCase());
             LinkedList list = GlobalUI.getAuthorHT().getTable()[index];
             //System.out.println(list.getHead().getElement());
-            
+
             LinkedList list2 = new LinkedList();
             Node pointer = list.getHead();
             for (int i = 0; i < list.getLength(); i++) {
@@ -227,34 +232,34 @@ public class FunctionsUI {
                 pointer = pointer.getNext();
             }
             fillComboBoxWithListStrings(comboBox, list2);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Selecciona un autor");
         }
 
     }
-    
+
     /**
      * Get article title and show information
-     * @param comboBox 
+     *
+     * @param comboBox
      */
-    
-    
-    public static void getArticleTitle(JComboBox<String> comboBox){
+    public static void getArticleTitle(JComboBox<String> comboBox) {
         if (comboBox.getSelectedItem() != null) {
             String title = comboBox.getSelectedItem().toString();
             findArticleByName(title);
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Selecciona un articulo");
         }
     }
-    
+
     /**
-     * Get keyword information from the SearchArticleUI and fill article titles information
+     * Get keyword information from the SearchArticleUI and fill article titles
+     * information
+     *
      * @param comboBox
-     * @param textfield 
+     * @param textfield
      */
-    
     public static void fillKeyWordArticleTitleComboBox(JComboBox<String> comboBox, JTextField textfield) {
         LinkedList list2 = new LinkedList();
         if (!textfield.getText().equals("")) {
@@ -262,30 +267,41 @@ public class FunctionsUI {
             int index = GlobalUI.getKeywordsHT().hashString(keyword.toLowerCase());
             LinkedList list = GlobalUI.getKeywordsHT().getTable()[index];
             //System.out.println(list.getHead().getElement());
-            
+
             Node pointer = list.getHead();
             for (int i = 0; i < list.getLength(); i++) {
                 list2.addEnd(((KeyWord) pointer.getElement()).getTitle());
                 pointer = pointer.getNext();
             }
             fillComboBoxWithListStrings(comboBox, list2);
-            
-            if (list2.getLength() == 0 ) {
+
+            if (list2.getLength() == 0) {
                 JOptionPane.showMessageDialog(null, "Palabra clave no encontrada");
-                
+
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Escriba una palabra clave");
         }
-        
+
         textfield.setText("");
-        
-         
-            
-        
 
     }
-    
 
+    /**
+     * returns given word trimmed, and if it has . in the end, removes it
+     *
+     * @param word
+     * @return string
+     */
+    public static String trimWord(String word) {
+        String aux = word;
+        aux = aux.trim();
+        char end = aux.charAt(aux.length() - 1);
+        if (end == '.') {
+            aux = aux.substring(0, aux.length() - 1);
+        }
+        System.out.println(aux);
+        return aux;
+    }
 }
