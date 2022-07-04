@@ -197,6 +197,7 @@ public class FunctionsUI {
      */
     public static int hashStringUpperC(String string, HashTable HT) {
         String str = string.toLowerCase();
+        str = FunctionsUI.trimWord(str);
         long hash = 5381;
         for (int i = 0; i < str.length(); i++) {
             // Multiply hash by 33 done by bit shift
@@ -294,7 +295,8 @@ public class FunctionsUI {
      * @return string
      */
     public static String trimWord(String word) {
-        String aux = word.trim();
+        String aux = word;
+        aux = aux.trim();
         char end = aux.charAt(aux.length() - 1);
         if (end == '.') {
             aux = aux.substring(0, aux.length() - 1);
