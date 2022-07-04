@@ -5,6 +5,10 @@
  */
 package UI;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import main.FunctionsTXT;
+
 /**
  *
  * @author isaac
@@ -18,6 +22,18 @@ public class MainPage extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                int selectedOption = JOptionPane.showConfirmDialog(null, "¿Desea guardar los datos?", "Guardar los datos en la base de datos", JOptionPane.YES_NO_OPTION); 
+                if (selectedOption == JOptionPane.YES_OPTION) {
+                    FunctionsTXT.save();
+                }
+                e.getWindow().dispose();
+                System.exit(0);
+            }
+        });
     }
 
     /**

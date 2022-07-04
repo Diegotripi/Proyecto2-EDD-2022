@@ -6,7 +6,10 @@
 package UI;
 
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import main.FunctionsTXT;
 
 /**
  *
@@ -21,7 +24,26 @@ public class SearchArticlePage extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                int selectedOption = JOptionPane.showOptionDialog(null, "Guardar los datos en la base de datos",
+                         "¿Desea guardar los datos?" ,
+                         JOptionPane.YES_NO_OPTION,
+                         JOptionPane.QUESTION_MESSAGE,
+                         null,
+                         new Object[] { "Sí", "No"},
+                         "No");
+                if (selectedOption == JOptionPane.YES_OPTION) {
+                    FunctionsTXT.save();
+                }
+                e.getWindow().dispose();
+                System.exit(0);
+            }
+        });
     }
+    
     /**
      * Return the combo box
      * @return Author Combo Box

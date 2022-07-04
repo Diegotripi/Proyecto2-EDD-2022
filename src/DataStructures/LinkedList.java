@@ -368,8 +368,12 @@ public class LinkedList {
         return getHead() == null;
     }
     
-    //FALTA JAVADOC
-    public boolean isTitleRepetitionIn(WordRepetition object) {
+    /**
+     * Checks if the wordRepetition Object is in the list and returns a boolean
+     * @param object
+     * @return boolean
+     */
+    public boolean isWordRepetitionIn(WordRepetition object) {
         Node pointer = getHead();
         while (pointer != null) {
             if (pointer.getElement().equals(object)) {
@@ -380,7 +384,10 @@ public class LinkedList {
         return false;
     }
     
-    //FALTA JAVADOC
+    /**
+     * Adds the string at the end of the list if its not already in the list
+     * @param element 
+     */
     public void addEndNoRep(String element) {
         Node node = new Node(element);
         if (isEmpty()) {
@@ -398,7 +405,11 @@ public class LinkedList {
         this.length++;
     }
     
-    //FALTA JAVADOC
+    /**
+     * Checks if the String is in the list returning a boolean
+     * @param element
+     * @return boolean
+     */
     public boolean isStringInList(String element) {
         Node pointer = getHead();
         boolean found = false;
@@ -412,15 +423,19 @@ public class LinkedList {
         return found;
     }
     
-    //FALTA JAVADOC Y PONER QUE AL FINAL SE PONGA UN PUNTO EN VEZ DE UNA COMA
+    /**
+     * From the authors list it returns an organized String of the authors
+     * @return result
+     */
     public String getAuthorsString() {
         String result = "";
         
         Node pointer = getHead();
-        while (pointer != null) {
-            result += (String) pointer.getElement() + ",";
+        while (pointer.getNext() != null) {
+            result += (String) pointer.getElement() + ", ";
             pointer = pointer.getNext();
         }
+        result += (String) pointer.getElement() + ".";
         
         return result;
     }

@@ -165,7 +165,9 @@ public class FunctionsTXT {
         }
     }
     
-    //FALTA EL JAVADOC
+    /**
+     * Saves the data in the project's database
+     */
     public static void save() {
         String path = "src\\main\\DB.txt";
         String databaseText = "";

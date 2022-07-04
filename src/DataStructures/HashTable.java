@@ -77,8 +77,8 @@ public class HashTable {
     }
 
     /**
-     * Given and article, adds the article into the hash table if its unique
-     * adds it and return true, if not only return false;
+     * Given and article, adds the article into the hash table and the other 
+     * data structures if its unique and returns true, if not only returns false;
      *
      * @param articleToAdd
      * @return boolean
@@ -97,7 +97,6 @@ public class HashTable {
             return false;
         } else {
             getTable()[index].addEnd(articleToAdd);
-            //FALTA ANHADIR ESTO EN EL JAVADOC
             addTitleInList(articleToAdd);
             addAuthorInList(articleToAdd);
             addWordsInList(articleToAdd);
@@ -106,7 +105,10 @@ public class HashTable {
 
     }
 
-    //FALTA JAVADOC 
+    /**
+     * Adds the article's title to the title list
+     * @param articleToAdd 
+     */
     public void addTitleInList(Article articleToAdd) {
         GlobalUI.getListTitles().addEnd(articleToAdd.getTitle());
     }
@@ -238,13 +240,25 @@ public class HashTable {
         return size;
     }
 
-    //FALTA EL JAVADOC
+    /**
+     * Adds the key words in the HashTable if its not already there
+     * @param object 
+     */
     public void addWordInListOfRep(WordRepetition object) {
-        int index = hashString(object.getWord().toLowerCase());
-        boolean isTitleInList = getTable()[index].isTitleRepetitionIn(object);
+        if (object.getWord().contains(" ")) {
+            int index = hashString(object.getWord().toLowerCase().replaceAll(" ", "_"));
+            boolean isTitleInList = getTable()[index].isWordRepetitionIn(object);
 
-        if (!isTitleInList) {
-            getTable()[index].addEnd(object);
+            if (!isTitleInList) {
+                getTable()[index].addEnd(object);
+            }
+        } else {
+            int index = hashString(object.getWord().toLowerCase());
+            boolean isTitleInList = getTable()[index].isWordRepetitionIn(object);
+
+            if (!isTitleInList) {
+                getTable()[index].addEnd(object);
+            }
         }
     }
 

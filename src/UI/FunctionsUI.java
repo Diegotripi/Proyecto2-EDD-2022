@@ -59,7 +59,12 @@ public class FunctionsUI {
         }
     }
 
-    //FALTA JAVADOC
+    /**
+     * Fills the ComboBox of the respective window with the title of the articles
+     * 
+     * @param comboBox
+     * @param List 
+     */
     public static void fillComboBoxWithListStrings(JComboBox<String> comboBox, LinkedList List) {
         comboBox.removeAllItems();
         int index = 0;
@@ -71,36 +76,40 @@ public class FunctionsUI {
         }
     }
 
-    //FALTA JAVADOC
+    /**
+     * Analyzes the repetition of the key words in the summary and places in the 
+     * TextArea of the window the analysis (String).
+     * 
+     * @param key
+     * @param textArea 
+     */
     public static void analyzeSummary(String key, JTextArea textArea) {
         if (key != null) {
-
+            
+            Article article = getArticle(key);
+            
             String textResult = "Nombre del trabajo: " + key + "\n";
 
-            LinkedList list = GlobalUI.getArticleHT().getTable()[hashStringUpperC(key, GlobalUI.getArticleHT())];
-
-            Node pointer = list.getHead();
-            while (pointer != null && !((Article) pointer.getElement()).getTitle().equals(key)) {
-                pointer = pointer.getNext();
-            }
-
-            textResult += "Autores: " + ((Article) pointer.getElement()).getAuthors().getAuthorsString() + "\n\n";
-            String summary = ((Article) pointer.getElement()).getBody();
-
-            String[] wordArray = summary.replaceAll("[,.;:'?!)(]", "").replace(" ", "\n").split("\n");
-            String[] keyWordsArray = new String[((Article) pointer.getElement()).getKeyWords().getLength()];
+            textResult += "Autores: " + article.getAuthors().getAuthorsString() + "\n\n";
+            String summary = article.getBody();
+            
+            String[] keyWordsArray = new String[article.getKeyWords().getLength()];
             HashTable wordsHT = new HashTable();
-
+            
+            summary = replaceAllSpacedWordsInSummary(article, summary);
+            
+            String[] wordArray = summary.replaceAll("[,.;:'?!)(]", "").replace(" ", "\n").split("\n");
+            
             int index2 = 0;
-            Node pointer5 = ((Article) pointer.getElement()).getKeyWords().getHead();
+            Node pointer5 = article.getKeyWords().getHead();
             while (pointer5 != null) {
-                WordRepetition wordAndRepetition = new WordRepetition(((String) pointer5.getElement()));
-                keyWordsArray[index2] = (String) pointer5.getElement();
+                WordRepetition wordAndRepetition = new WordRepetition(((String) pointer5.getElement()).replaceAll(" ", "_"));
+                keyWordsArray[index2] = ((String) pointer5.getElement()).replaceAll(" ", "_");
                 wordsHT.addWordInListOfRep(wordAndRepetition);
                 index2++;
                 pointer5 = pointer5.getNext();
             }
-
+            
             for (int i = 0; i < wordArray.length; i++) {
                 int index = FunctionsUI.hashStringUpperC(wordArray[i], wordsHT);
                 try {
@@ -123,8 +132,8 @@ public class FunctionsUI {
 
                 Node pointer1 = wordsHT.getTable()[indexHT].getHead();
                 while (pointer1 != null) {
-                    if (((WordRepetition) pointer1.getElement()).getWord().equals(keyWordsArray[i])) {
-                        String word = ((WordRepetition) pointer1.getElement()).getWord();
+                    if (((WordRepetition) pointer1.getElement()).getWord().toLowerCase().equals(keyWordsArray[i].toLowerCase())) {
+                        String word = ((WordRepetition) pointer1.getElement()).getWord().replaceAll("_", " ");
                         int quantity = ((WordRepetition) pointer1.getElement()).getRepetition();
                         textResult += word + ": " + String.valueOf(quantity) + "\n";
                     }
@@ -138,8 +147,52 @@ public class FunctionsUI {
             JOptionPane.showMessageDialog(null, "Elija uno de los articulos");
         }
     }
+    
+    /**
+     * Returns the article of the assigned key
+     * @param key
+     * @return article
+     */
+    public static Article getArticle(String key) {
+        LinkedList list = GlobalUI.getArticleHT().getTable()[hashStringUpperC(key, GlobalUI.getArticleHT())];
 
-    //FALTA JAVADOC
+            Node pointer = list.getHead();
+            while (pointer != null && !((Article) pointer.getElement()).getTitle().equals(key)) {
+                pointer = pointer.getNext();
+            }
+        return (Article) pointer.getElement();
+    }
+    
+    /**
+     * Replaces al the spaced words in the summary for the same words but with a
+     * "_" between the words and converts all the letters to "lowercased" ones;
+     * returns the changed summary.
+     * 
+     * @param article
+     * @param summary
+     * @return summary
+     */
+    public static String replaceAllSpacedWordsInSummary(Article article, String summary) {
+            Node pointer7 = article.getKeyWords().getHead();
+            while (pointer7 != null) {
+                if (((String) pointer7.getElement()).contains(" ")) {
+                    String newWord = ((String) pointer7.getElement()).replaceAll(" ", "_");
+                    String newSummary = summary.toLowerCase().replaceAll(((String) pointer7.getElement()), newWord);
+                    summary = newSummary;
+                }
+                pointer7 = pointer7.getNext();
+            }
+            return summary;
+    }
+
+    /**
+     * Converts the title (key) to the index of the HT (Doesn't have to be in 
+     * lowercase) and returns that index
+     * 
+     * @param string
+     * @param HT
+     * @return index
+     */
     public static int hashStringUpperC(String string, HashTable HT) {
         String str = string.toLowerCase();
         long hash = 5381;
@@ -159,7 +212,6 @@ public class FunctionsUI {
      * @param comboBox
      * @param comboBox2 
      */
-
     public static void fillAuthorArticleTitleComboBox(JComboBox<String> comboBox, JComboBox<String> comboBox2) {
 
         if (comboBox2.getSelectedItem() != null) {

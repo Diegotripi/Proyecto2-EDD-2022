@@ -6,7 +6,10 @@
 package UI;
 
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import main.FunctionsTXT;
 
 /**
  *
@@ -21,14 +24,38 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                int selectedOption = JOptionPane.showOptionDialog(null, "Guardar los datos en la base de datos",
+                         "¿Desea guardar los datos?" ,
+                         JOptionPane.YES_NO_OPTION,
+                         JOptionPane.QUESTION_MESSAGE,
+                         null,
+                         new Object[] { "Sí", "No"},
+                         "No");
+                if (selectedOption == JOptionPane.YES_OPTION) {
+                    FunctionsTXT.save();
+                }
+                e.getWindow().dispose();
+                System.exit(0);
+            }
+        });
     }
     
-    //FALTA JAVADOC
+    /**
+     * Returns the ComboBox of the window
+     * @return jComboBox1
+     */
     public JComboBox<String> getjComboBox1() {
         return jComboBox1;
     }
 
-    //FALTA JAVADOC
+    /**
+     * Returns the TextArea of the window
+     * @return jTextArea1
+     */
     public JTextArea getjTextArea1() {
         return jTextArea1;
     }
@@ -51,6 +78,7 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,11 +117,17 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
 
+        jTextArea1.setBackground(new java.awt.Color(255, 153, 153));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 470, 110));
+
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Elija el articulo que desea analizar");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 470, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 530, 290));
 
@@ -152,6 +186,7 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
