@@ -78,8 +78,9 @@ public class HashTable {
     }
 
     /**
-     * Given and article, adds the article into the hash table and the other 
-     * data structures if its unique and returns true, if not only returns false;
+     * Given and article, adds the article into the hash table and the other
+     * data structures if its unique and returns true, if not only returns
+     * false;
      *
      * @param articleToAdd
      * @return boolean
@@ -106,7 +107,7 @@ public class HashTable {
         }
 
     }
-    
+
 //    public String trimWord(String word) {
 //        String aux = word.trim();
 //        char end = aux.charAt(word.length()-1);
@@ -116,10 +117,10 @@ public class HashTable {
 //        System.out.println(aux);
 //        return aux;
 //    }
-
     /**
      * Adds the article's title to the title list
-     * @param articleToAdd 
+     *
+     * @param articleToAdd
      */
     public void addTitleInList(Article articleToAdd) {
         GlobalUI.getListTitles().addEnd(articleToAdd.getTitle());
@@ -130,7 +131,6 @@ public class HashTable {
      *
      * @param articleToAdd
      */
-
     public void addAuthorInList(Article articleToAdd) {
 
         LinkedList list = GlobalUI.getListAuthor();
@@ -138,11 +138,20 @@ public class HashTable {
         String[] name = authors.split(",");
 
         for (int i = 0; i < name.length; i++) {
+            name[i] = name[i].replace("-", " ");
+            name[i] = FunctionsUI.trimWord(name[i]);
+            
+        }
+
+        for (int i = 0; i < name.length; i++) {
             boolean aux = true;
             Node temp = list.getHead();
             for (int j = 0; j < list.getLength(); j++) {
                 //Validate if an author is already added
-                if (temp.getElement().toString().equalsIgnoreCase(name[i])) {
+                String elementAux = temp.getElement().toString().replace("-", " ");
+                elementAux = FunctionsUI.trimWord(elementAux);
+                
+                if ( elementAux.equalsIgnoreCase(name[i])) {
                     aux = false;
                 }
 
@@ -171,6 +180,10 @@ public class HashTable {
         LinkedList list = GlobalUI.getListWords();
         String words = articleToAdd.getKeyWords().getAuthorsString();
         String[] name = words.split(",");
+
+        for (int i = 0; i < name.length; i++) {
+            name[i] = FunctionsUI.trimWord(name[i]);
+        }
 
         for (int i = 0; i < name.length; i++) {
             boolean aux = true;
@@ -226,7 +239,7 @@ public class HashTable {
         LinkedList articlesInIndex = getTable()[index];
         Node pointer = articlesInIndex.getHead();
         while (pointer != null) {
-            if ((trimmed.toLowerCase()).equals(   FunctionsUI.trimWord (((Article) pointer.getElement()).getTitle().toLowerCase())) ) {
+            if ((trimmed.toLowerCase()).equals(FunctionsUI.trimWord(((Article) pointer.getElement()).getTitle().toLowerCase()))) {
                 article = ((Article) pointer.getElement());
             }
             pointer = pointer.getNext();
@@ -255,7 +268,8 @@ public class HashTable {
 
     /**
      * Adds the key words in the HashTable if its not already there
-     * @param object 
+     *
+     * @param object
      */
     public void addWordInListOfRep(WordRepetition object) {
         if (object.getWord().contains(" ")) {
