@@ -232,6 +232,7 @@ public class FunctionsUI {
                 pointer = pointer.getNext();
             }
             fillComboBoxWithListStrings(comboBox, list2);
+            comboBox.setSelectedItem(list2.getHead().getElement().toString());
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona un autor");
         }
@@ -263,7 +264,7 @@ public class FunctionsUI {
     public static void fillKeyWordArticleTitleComboBox(JComboBox<String> comboBox, JTextField textfield) {
         LinkedList list2 = new LinkedList();
         if (!textfield.getText().equals("")) {
-            String keyword = textfield.getText();
+            String keyword = FunctionsUI.trimWord(textfield.getText());
             int index = GlobalUI.getKeywordsHT().hashString(keyword.toLowerCase());
             LinkedList list = GlobalUI.getKeywordsHT().getTable()[index];
             //System.out.println(list.getHead().getElement());
@@ -274,7 +275,7 @@ public class FunctionsUI {
                 pointer = pointer.getNext();
             }
             fillComboBoxWithListStrings(comboBox, list2);
-
+            comboBox.setSelectedItem(list2.getHead().getElement().toString());
             if (list2.getLength() == 0) {
                 JOptionPane.showMessageDialog(null, "Palabra clave no encontrada");
 
@@ -301,7 +302,6 @@ public class FunctionsUI {
         if (end == '.') {
             aux = aux.substring(0, aux.length() - 1);
         }
-        System.out.println(aux);
         return aux;
     }
 }

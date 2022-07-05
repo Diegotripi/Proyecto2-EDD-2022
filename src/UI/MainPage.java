@@ -52,7 +52,6 @@ public class MainPage extends javax.swing.JFrame {
         addArticleButton = new javax.swing.JButton();
         openAnalyzePageButton = new javax.swing.JButton();
         openSearchPageButton = new javax.swing.JButton();
-        testHT = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,7 +63,6 @@ public class MainPage extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("MetroMendeley: Repositorio Científico");
         jPanel2.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
 
@@ -97,14 +95,6 @@ public class MainPage extends javax.swing.JFrame {
         });
         jPanel1.add(openSearchPageButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 180, 140));
 
-        testHT.setText("test HT");
-        testHT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testHTActionPerformed(evt);
-            }
-        });
-        jPanel1.add(testHT, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, -1, -1));
-
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/output-onlinepngtools.png"))); // NOI18N
         jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-670, -130, -1, -1));
 
@@ -116,10 +106,6 @@ public class MainPage extends javax.swing.JFrame {
     private void addArticleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArticleButtonActionPerformed
         FunctionsUI.openJFileChooser();
     }//GEN-LAST:event_addArticleButtonActionPerformed
-
-    private void testHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testHTActionPerformed
-        GlobalUI.getArticleHT().printAllArticlesConsole();
-    }//GEN-LAST:event_testHTActionPerformed
 
     private void openSearchPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSearchPageButtonActionPerformed
         GlobalUI.openSearchArticlePage();
@@ -174,7 +160,6 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JButton openAnalyzePageButton;
     private javax.swing.JButton openSearchPageButton;
-    private javax.swing.JButton testHT;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
