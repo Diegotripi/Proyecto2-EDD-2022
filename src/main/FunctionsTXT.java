@@ -30,8 +30,14 @@ public class FunctionsTXT {
     public static void readArticleTxt(File file) {
 
         if (file.getAbsolutePath().endsWith(".txt")) {
-            int confirm = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea usar el arhivo: " + file.getName() + " ?", "Confirmación", JOptionPane.YES_NO_OPTION, 3);
-            if (confirm == 0) {
+            int confirm = JOptionPane.showOptionDialog(null, "¿Está seguro que desea usar el arhivo: " + file.getName() + " ?",
+                         "Confirmación",
+                         JOptionPane.YES_NO_OPTION,
+                         JOptionPane.QUESTION_MESSAGE,
+                         null,
+                         new Object[] { "Sí", "No"},
+                         "No");
+            if (confirm == JOptionPane.YES_OPTION) {
                 String txt = "";
                 try {
                     BufferedReader bf = new BufferedReader(new FileReader(file));

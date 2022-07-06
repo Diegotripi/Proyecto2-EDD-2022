@@ -28,8 +28,8 @@ public class AnalyzeArticlePage extends javax.swing.JFrame {
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
-                int selectedOption = JOptionPane.showOptionDialog(null, "Guardar los datos en la base de datos",
-                         "¿Desea guardar los datos?" ,
+                int selectedOption = JOptionPane.showOptionDialog(null, "¿Desea guardar los datos?",
+                         "Guardar los datos en la base de datos" ,
                          JOptionPane.YES_NO_OPTION,
                          JOptionPane.QUESTION_MESSAGE,
                          null,

@@ -123,11 +123,3 @@ información obtenida. Por otra parte, REST debería utilizarse en caso de neces
 respuesta y cuando se requiera utilizar la totalidad de la información de los recursos manejados.
 Palabras claves: REST, GraphQL, cliente-servidor, mecanismo arquitectónico, calidad de software.
 /
-investigación épica
-Autores
-Isaac Olivares
-Pepito Perez
-Resumen
-si soy epicardo, psn psn, prueba suprema, prueba suprema, caje
-Palabras claves: epicardo, psn, cuphead, prueba suprema.
-/
