@@ -92,6 +92,7 @@ public class FunctionsUI {
             String textResult = "Nombre del trabajo: " + key + "\n";
 
             textResult += "Autores: " + article.getAuthors().getAuthorsString() + "\n\n";
+            textResult += "Frecuencia de palabras clave: " + "\n";
             String summary = article.getBody();
 
             String[] keyWordsArray = new String[article.getKeyWords().getLength()];
@@ -232,7 +233,10 @@ public class FunctionsUI {
                 pointer = pointer.getNext();
             }
             fillComboBoxWithListStrings(comboBox, list2);
-            comboBox.setSelectedItem(list2.getHead().getElement().toString());
+            if (!list2.isEmpty()) {
+                comboBox.setSelectedItem(list2.getHead().getElement().toString());
+            }
+
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona un autor");
         }
@@ -275,7 +279,10 @@ public class FunctionsUI {
                 pointer = pointer.getNext();
             }
             fillComboBoxWithListStrings(comboBox, list2);
-            comboBox.setSelectedItem(list2.getHead().getElement().toString());
+            if (!list2.isEmpty()) {
+                comboBox.setSelectedItem(list2.getHead().getElement().toString());
+            }
+
             if (list2.getLength() == 0) {
                 JOptionPane.showMessageDialog(null, "Palabra clave no encontrada");
 
